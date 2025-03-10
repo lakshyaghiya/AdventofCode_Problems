@@ -1,8 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Intrinsics.Arm;
-using System.Runtime.Versioning;
+﻿using System;
 namespace Puzzle1Part1
 {
     class Day2Part2
@@ -16,17 +12,19 @@ namespace Puzzle1Part1
             int ans = 0;
             foreach (var line in File.ReadLines(filePath))
             {
-                var space = line.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
-                if (Accepted(space))
+                var tempspace = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                var space = tempspace.Select(int.Parse);
+                var space1 = space.ToList();
+                if (Accepted(space1))
                 {
                     ans++;
                 }
                 else
                 {
 
-                    for (int i = 0; i < space.Count(); i++)
+                    for (int i = 0; i < space1.Count(); i++)
                     {
-                        List<int> new_space = space.ToList();
+                        List<int> new_space = space1.ToList();
                         new_space.RemoveAt(i);
                         if (Accepted(new_space))
                         {
